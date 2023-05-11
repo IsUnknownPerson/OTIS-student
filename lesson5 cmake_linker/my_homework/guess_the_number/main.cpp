@@ -2,6 +2,8 @@
 #include "gessing.h"
 #include "string"
 
+#include <array>
+
 using namespace std;
 
 
@@ -24,6 +26,23 @@ int main(int argc, char** argv)
         else
             init.generate_random(99);
     }
+
+//#include <cstring>
+//#include <algorithm>
+#include <array>
+//    char getNthSymbol(const char* cString, size_t n, char defaultSymbol) {
+//        if (std::strlen(cString) >= n) { // or maybe = only
+//            return cString[n];
+//        }
+//        return defaultSymbol;
+//    }
+
+//    const char level = getNthSymbol(argv[1], 6, '3');
+//    const size_t levelId = std::clamp(level, '1', '3') - '1';
+//    init.generate_random( std::array{9, 49, 99}[levelId] );
+//auto d = array{9, 49, 99}[2] ;   cout << "d = " << d; //d = 99
+
+
 
     gessing gues(init.rand_value);
 
