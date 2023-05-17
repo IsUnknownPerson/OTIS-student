@@ -22,10 +22,15 @@ void ASTNode::inner_print(std::ostream &out, size_t indent) const {
     if (lhs_) {
         lhs_->inner_print(out, indent + 1);
     }
-    for (size_t i = 0; i < indent; ++i) {
-        out << "    ";
+
+    if (repr_ != "(")
+    {
+        for (size_t i = 0; i < indent; ++i) {
+            out << "    ";
+        }
+
+        out << repr_ << '\n';
     }
-    out << repr_ << '\n';
     if (rhs_) {
         rhs_->inner_print(out, indent + 1);
     }

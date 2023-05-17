@@ -111,7 +111,7 @@ public:
         {
             temp += std::pow((v - mid), 2);
         }
-        return std::sqrt(temp/quantity);;
+        return std::sqrt(temp/quantity);
     }
 
     const char * name() const override {

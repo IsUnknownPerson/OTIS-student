@@ -68,7 +68,6 @@ Lexer::Token Lexer::next_token() {
             }
             if (std::isdigit(ch_)) {
                 number_ = ch_ - '0';
-                //std::cout << "lexer input " << number_ << std::endl;
                 state_ = State::ReadNumber;
                 next_char();
                 break;

@@ -34,13 +34,14 @@ public:
 class LBrace: public ASTNode {
 public:
     inline LBrace(ASTNode *lhs, ASTNode *rhs) :
-        ASTNode("", lhs, rhs) {}
+        ASTNode("(", lhs, rhs) {}
 };
 
 class RBrace: public ASTNode {
 public:
     inline RBrace(ASTNode *lhs, ASTNode *rhs) :
         ASTNode("", lhs, rhs) {}
+    //1+2*(3+4+6)-5
 };
 
 
