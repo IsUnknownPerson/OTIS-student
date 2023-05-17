@@ -33,7 +33,21 @@ class ASTNode {
     ASTNode *rhs_;
 };
 
-class Add: public ASTNode {
-public:
-    inline Add(const std::string &repr, ASTNode *lhs, ASTNode *rhs) {}
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

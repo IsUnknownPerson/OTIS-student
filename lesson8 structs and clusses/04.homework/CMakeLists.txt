@@ -11,6 +11,8 @@ add_executable(calc
     include/parser.hpp
     include/astnode.hpp
     include/number.hpp
+    include/operands.h
+    include/name.h
 )
 
 target_include_directories(calc PRIVATE include)

@@ -31,6 +31,8 @@ class Lexer {
 
     std::string get_name() const { return name_; }
 
+    std::string get_brace() const { return name_; }
+
   protected:
     bool isbrace(char ch) const;
 
