@@ -15,7 +15,10 @@ class Parser {
 
     Parser &operator=(const Parser &other) = delete;
 
-    ~Parser() = default;
+    ~Parser() {
+        std::cout << "Parser distructor" << std::endl;
+
+    }
 
     ASTNode *parse();
 

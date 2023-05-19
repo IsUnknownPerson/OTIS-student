@@ -7,6 +7,10 @@ class Add: public ASTNode {
 public:
     inline Add(ASTNode *lhs, ASTNode *rhs) :
         ASTNode("+", lhs, rhs) {}
+    ~Add() override
+    {
+       std::cout << "Add distructor" << std::endl;
+    }
 };
 
 

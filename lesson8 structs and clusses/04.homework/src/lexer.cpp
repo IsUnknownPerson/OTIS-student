@@ -5,14 +5,6 @@
 
 #include <cctype>
 
-
-// Lexer::Lexer(std::istream &in)
-//    : state_(State::Empty)
-//    , number_(0)
-//    , in_(in) {
-//    next_char();
-//}
-
 Lexer::Token Lexer::next_token() {
     //std::cout << "input lexer" << std::endl;
     for (;;) {

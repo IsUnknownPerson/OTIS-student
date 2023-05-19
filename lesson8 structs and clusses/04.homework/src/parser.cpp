@@ -69,7 +69,36 @@ ASTNode *Parser::term() {
             break;
         }
         default:
-            return root;
+
+            if (tok_ != Token::End)
+            {
+                std::cout << "Error. Incorrect input" << std::endl;
+            }
+
+            /*
+            if (tok_ == Token::Number)
+                std::cout << "token == Number" << std::endl;
+            else if (tok_ == Token::Operator)
+                std::cout << "token == Operator" << std::endl;
+            else if (tok_ == Token::End)
+                std::cout << "token == End" << std::endl;
+            else if (tok_ == Token::Lbrace)
+                std::cout << "token == Lbrace" << std::endl;
+            else if (tok_ == Token::Rbrace)
+                std::cout << "token == Rbrace" << std::endl;
+            else if (tok_ == Token::Name)
+                std::cout << "token == Name" << std::endl;
+            else
+                std::cout << "unknown token" << std::endl;
+
+            std::cout << "get_operator default: " << lexer_.get_operator() << std::endl;
+            std::cout << "get_operator default front: " << lexer_.get_operator() << std::endl;
+            std::cout << "get_name default: " << lexer_.get_name() << std::endl;
+            std::cout << "get_name default front: " << lexer_.get_name() << std::endl;
+            std::cout << "get_number default: " << lexer_.get_number() << std::endl;
+            std::cout << "get_number default front: " << lexer_.get_number() << std::endl;
+            */
+           return root;
         }
     }
 }
@@ -87,18 +116,6 @@ ASTNode *Parser::prim() {
         node = new Variable(lexer_.get_name());
         //return nullptr;
         break;
-        //    case Token::Lbrace:
-        //        //std::cout << "case Token::Lbrace:" << std::endl  ;
-        //  //      node = prim();
-        //        return prim();
-        ////        node = new Variable(lexer_.get_brace());
-        ////        next_token();
-        //        break;
-        //    case Token::Rbrace:
-        //        //return node;
-        //        node = new Variable(lexer_.get_brace());
-        //        next_token();
-        //        break;
     case Token::Lbrace:
         //std::cout << " We are here on Lbrace " << std::endl;
         node = new LBrace(node, expr());
@@ -116,3 +133,4 @@ ASTNode *Parser::prim() {
     next_token();
     return node;
 }
+

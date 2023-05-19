@@ -23,6 +23,9 @@ void ASTNode::inner_print(std::ostream &out, size_t indent) const {
         lhs_->inner_print(out, indent + 1);
     }
 
+    if (repr_ == ")")
+        std::cout << "repr_ == (\n";
+
     if (repr_ != "(")
     {
         for (size_t i = 0; i < indent; ++i) {
@@ -31,6 +34,7 @@ void ASTNode::inner_print(std::ostream &out, size_t indent) const {
 
         out << repr_ << '\n';
     }
+
     if (rhs_) {
         rhs_->inner_print(out, indent + 1);
     }
