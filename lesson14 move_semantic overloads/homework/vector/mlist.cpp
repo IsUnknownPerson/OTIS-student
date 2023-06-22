@@ -115,9 +115,8 @@ public:
         Felement<T> *new_element = new Felement<T>;
         Felement<T> *temp = element;
 
-//        for (unsigned int i=0; i<index-1; ++i)
-//            temp = temp->next;
-        temp = _end->prev;
+        for (unsigned int i=0; i<index-1; ++i)
+            temp = temp->next;
 
         auto prewel = temp;
         auto nextel = temp->next;
