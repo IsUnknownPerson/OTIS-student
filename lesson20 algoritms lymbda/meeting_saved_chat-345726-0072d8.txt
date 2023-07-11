@@ -1,0 +1,146 @@
+20:00:43 From Mikhail To Everyone:
+	+
+20:00:43 From Вадим To Everyone:
+	+
+20:00:43 From Илья To Everyone:
+	+
+20:00:46 From Artyom To Everyone:
+	+
+20:02:15 From Илья To Everyone:
+	Звук странный. как-будто перегружен или кодек с низким битрейтом.
+20:02:29 From Николай To Everyone:
+	+
+20:02:31 From Илья To Everyone:
+	можно еще пару слов))
+20:02:39 From Владимир Морозов To Everyone:
+	Да норм
+20:04:16 From Андрей Рыжиков To Everyone:
+	https://corehard.by/2017/02/20/day-to-day-c-algorithms-and-iterators/
+20:04:37 From Андрей Рыжиков To Everyone:
+	https://en.cppreference.com/w/cpp/algorithm
+20:05:46 From Вадим To Everyone:
+	не было+
+20:10:11 From Хроменок Роман To Everyone:
+	а зачем круглые скобки в конце?
+20:15:12 From Владимир Морозов To Everyone:
+	А эти категории итераторов они как, наследники какого-то класса "итератор"?
+20:16:20 From Владимир Морозов To Everyone:
+	ок
+20:17:01 From Artyom To Everyone:
+	пример будет
+20:17:51 From Хроменок Роман To Everyone:
+	а что значит упадем? исключение?
+20:22:29 From Artyom To Everyone:
+	а где определение a и и
+20:23:08 From Владимир Морозов To Everyone:
+	Анонимную просто функцию. Без названия.
+20:23:14 From Владимир Морозов To Everyone:
+	А ее можно писвоить?
+20:23:18 From Владимир Морозов To Everyone:
+	*присвоить
+20:23:22 From Владимир Морозов To Everyone:
+	лямбду
+20:24:20 From Владимир Морозов To Everyone:
+	Да
+20:25:53 From Mikhail To Everyone:
+	Подскажите, пожалуйста, как будет примерно работать distance для списков или словарей? (для векторов и массивов +/- понятно)
+20:27:46 From Mikhail To Everyone:
+	т.е. в худшем случае у нас distance будет работать за O(n)?
+20:28:18 From Mikhail To Everyone:
+	спасибо
+20:30:05 From Artyom To Everyone:
+	it это тип тут ?
+20:32:04 From Хроменок Роман To Everyone:
+	а если за размер выйдет?
+20:32:15 From Хроменок Роман To Everyone:
+	for_each
+20:32:50 From Владимир Морозов To Everyone:
+	Параллельные версии сами умеют распознавать тип процессора и количество ядер? И соответственно считать количество порождаемых потоков?
+20:33:10 From Владимир Морозов To Everyone:
+	Они безопасные?
+20:33:16 From Владимир Морозов To Everyone:
+	Параллельно безопасные?
+20:33:32 From Artyom To Everyone:
+	что впринципе означет подсчет числа вхождении
+20:35:30 From Владимир Морозов To Everyone:
+	т
+20:35:31 From Владимир Морозов To Everyone:
+	n
+20:35:38 From Mikhail To Everyone:
+	log(n)
+20:35:39 From Хроменок Роман To Everyone:
+	ON
+20:35:40 From Николай To Everyone:
+	n
+20:35:47 From Artyom To Everyone:
+	o(N)
+20:35:53 From Igor Popov To Everyone:
+	O(N)
+20:39:43 From Хроменок Роман To Everyone:
+	дак он же всеравно должен быдет по всем элементам пройтись
+20:39:56 From Хроменок Роман To Everyone:
+	понял
+20:46:48 From Илья To Everyone:
+	если делаем reserv, который выделит память вектору, то нам все еще нужен back_inserter?
+20:47:44 From Владимир Морозов To Everyone:
+	ага)
+20:53:25 From Artyom To Everyone:
+	так если все элементы есть же clear или я путаю ?
+21:01:34 From Хроменок Роман To Everyone:
+	ON
+21:01:37 From Mikhail To Everyone:
+	nlogn
+21:01:42 From Chuprikov Stanislav To Everyone:
+	nlogn
+21:01:46 From Хроменок Роман To Everyone:
+	она помоему по всем ходит
+21:01:48 From Igor Popov To Everyone:
+	от алгоритма зависит
+21:01:49 From Artyom To Everyone:
+	o(n)
+21:02:34 From Владимир Морозов To Everyone:
+	Там слияние?
+21:03:00 From Владимир Морозов To Everyone:
+	Имеет параллельную версию?
+21:03:01 From Anton To Everyone:
+	Она устойчивая?
+21:03:12 From Artyom To Everyone:
+	а по чему сортировать можно
+21:03:17 From Mikhail To Everyone:
+	quick sort обычно, наверное
+21:03:19 From Artyom To Everyone:
+	если строки
+21:04:23 From Владимир Морозов To Everyone:
+	а по чему сортировать можно	По компаратору
+21:21:01 From Artyom To Everyone:
+	в чем разниа между next и prev
+21:22:38 From Хроменок Роман To Everyone:
+	можно не по теме?
+21:22:45 From Хроменок Роман To Everyone:
+	ок
+21:29:00 From Хроменок Роман To Everyone:
+	вопрос можно? :)
+21:29:22 From Андрей Рыжиков To Everyone:
+	strict_weak_ordering
+21:31:21 From Андрей Рыжиков To Everyone:
+	https://otus.ru/polls/62106/
+21:33:17 From Хроменок Роман To Everyone:
+	а мне только по linux
+21:33:34 From Хроменок Роман To Everyone:
+	не, так нельзя
+21:33:42 From Хроменок Роман To Everyone:
+	только сист вызовы
+21:34:02 From Хроменок Роман To Everyone:
+	+
+21:35:19 From Вадим To Everyone:
+	Спасибо
+21:35:51 From Mikhail To Everyone:
+	насколько хорошо использовать assign для векторов и чем будет отличие от fill?
+21:37:25 From Mikhail To Everyone:
+	спасибо
+21:37:28 From Хроменок Роман To Everyone:
+	можно еще вопросик?
+21:40:27 From Хроменок Роман To Everyone:
+	понял, спасибо
+21:40:42 From Mikhail To Everyone:
+	спасибо

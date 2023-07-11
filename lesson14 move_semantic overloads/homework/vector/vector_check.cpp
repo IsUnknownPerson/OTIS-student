@@ -53,25 +53,38 @@ struct vector_checks{
 
     void vector_move_semantics_rValue_task()
     {
-        std::cout << "vector move semantics rValue check:" << std::endl;
+        cout << "vector copy and move semantics check:" << endl;
 
 
-        //move operator
+        mVector<int> vector_first{2,22,222,2222};
+        cout << "vector_first:" << endl;
+        for(int i=0; i<vector_first.size(); ++i)
+            cout << vector_first[i] << " ";
 
-        //copy operator
+        mVector<int> vector_second;
+        vector_second = vector_first;    //copy assignment operator
+        for(int i=0; i<vector_second.size(); ++i)
+            cout << vector_second[i] << " ";
+
+        vector_second = {1,11,111,11,3,33,333,33,7,77,777,77}; //move assignment operator
+        for(int i=0; i<vector_second.size(); ++i)
+            cout << vector_second[i] << " ";
 
 
+        mVector<int> checkCtor1{vector_second}; //copy ctor
+        for(int i=0; i<checkCtor1.size(); ++i)
+            cout << checkCtor1[i] << " ";
+        cout << endl;
 
-//        mVector<int> v{1,2,777,4,5};
+        mVector<int> checkCtor2 = std::move(vector_second); //move ctor
+        vector_second = nullptr;
+        for(int i=0; i<checkCtor2.size(); ++i)
+            cout << checkCtor2[i] << " ";
+        cout << endl;
 
-//        // error happens in  ~mVector()
-//        mVector<int> vv1;
-//        //vv1 = v;    //move assignment operator
+        auto x = nullptr;
 
-//        for (int i=0; i<v.size(); ++i)
-//            cout << v[i] << " ";
-//        cout << endl;
-        std::cout << "--------------------------\n" << std::endl;
+        std::cout << endl << "--------------------------\n" << std::endl;
     }
 
     void vector_iterator_task()

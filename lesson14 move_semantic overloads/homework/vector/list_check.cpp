@@ -71,7 +71,7 @@ struct full_linked_list_checks{
             cout << *i << " ";
         }
         std::cout << "\n--------------------------\n" << std::endl;
-    }
+   }
 
 };
 

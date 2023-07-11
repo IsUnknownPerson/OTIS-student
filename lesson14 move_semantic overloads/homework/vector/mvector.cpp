@@ -10,65 +10,80 @@ public:
     mVector(std::initializer_list<T> data): msize{0}, mcapacity{0}, region{nullptr}{
         msize = data.size();
         mcapacity = 2*msize;
-        //std::cout << "mcapacity: " << mcapacity << std::endl;
         if (mcapacity){
             T *new_region = new T[mcapacity];
             region = new_region;
             int i = 0;
             for (auto &v : data){
-                region[i] = v;
-                //std::cout << "region[" << i << "]: " << region[i] << std::endl;
-                ++i;
+                region[i] = v; ++i;
             }
         }
     }
 
 
     ~mVector(){
-        if(region)
-            delete [] region;
+        //if(region) //nullptr можно удалять безболезненно
+        delete [] region;
     }
 
-    T& operator[] (T index) //operator [] overload, return element by reference to change value
+    T& operator[] (size_t index) //operator [] overload, return element by reference to change value
     {
         if (index < 0 || index >= msize)
             throw std::out_of_range("Vector index out of range");
         return region[index];
     }
-    /*
-    //copy ctor
-    mVector(const mVector &other){
-        std::cout << "vector copy ctor" << std::endl;
-        region = other.region;
-        msize = other.msize;
-        mcapacity = other.mcapacity;
-    }
-
-    //move ctor
-    mVector(mVector &other){
-        std::cout << "vector move ctor" << std::endl;
-        region = other.region;
-        msize = other.msize;
-        mcapacity = other.mcapacity;
-        delete []region;
-        region = nullptr;
-    }
 
     //copy assignment operator
-    mVector& operator= (const mVector &rhs){
-        std::cout << "copy assignment operator" << std::endl;
+    mVector& operator = (mVector &rhs){
+        std::cout << std::endl << "copy assignment operator" << std::endl;
+        T *new_region = new T[rhs.mcapacity];
 
-        return *this;
-    }
-*/
-    //move assignment operator
-    mVector& operator= (mVector const &rhs){
-        std::cout << "move assignment operator" << std::endl;
-        region = rhs.region;
+        for (unsigned int i=0; i<rhs.msize; ++i)
+            new_region[i] = rhs[i];
+
+        region = new_region;
         msize = rhs.msize;
         mcapacity = rhs.mcapacity;
         return *this;
     }
+
+    mVector& operator = (std::nullptr_t){
+        region = nullptr;
+    }
+
+    mVector& operator = (mVector &&rhs) noexcept{
+        std::cout << std::endl << "move assignment operator" << std::endl;
+
+        delete region;
+        msize = rhs.msize;
+        mcapacity = rhs.mcapacity;
+        region = rhs.region;
+        rhs.region = nullptr;
+        return *this;
+    }
+
+    /*  */
+    //move ctor
+    mVector( mVector &rhs){
+        std::cout << "\nvector copy ctor" << std::endl;
+       T *new_region = new T[rhs.mcapacity];
+
+        for (unsigned int i=0; i<rhs.msize; ++i)
+            new_region[i] = rhs[i];
+
+        region = new_region;
+        msize = rhs.msize;
+        mcapacity = rhs.mcapacity;
+    }
+
+    //copy ctor
+        mVector(mVector &&rhs) noexcept{
+            std::cout << "vector move ctor" << std::endl;
+            region = rhs.region;
+            msize = rhs.msize;
+            mcapacity = rhs.mcapacity;
+        }
+
 
     int size(){
         return msize;

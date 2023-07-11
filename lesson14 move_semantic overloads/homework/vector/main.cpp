@@ -12,19 +12,14 @@ int main()
     vChecks.vector_base_task_check();
     std::cout << "vector capacity task done" << std::endl;
     std::cout << "--------------------------\n" << std::endl;
-    //vChecks.vector_move_semantics_rValue_task();
-    vChecks.vector_iterator_task();
+    vChecks.vector_move_semantics_rValue_task();
+    //vChecks.vector_iterator_task();
 
 
-    full_linked_list_checks fListChecks;
+//    full_linked_list_checks fListChecks;
 
-    fListChecks.list_base_task_check();
-    fListChecks.list_iterator_task();
-
-
-
-
-
+//    fListChecks.list_base_task_check();
+//    fListChecks.list_iterator_task();
 
 
 

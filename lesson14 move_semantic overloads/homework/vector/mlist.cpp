@@ -29,6 +29,31 @@ public:
     }
 
     ~mFullList(){
+        Felement<T> *current = element;
+        Felement<T> *next;// = element->next;
+
+        for (unsigned int i=0; i<(msize); ++i)
+        {
+            next = current->next;
+            delete current;
+            current = next;
+        }
+
+
+        //        std::cout << std::endl;
+        //        for(int i=0; element<size(); ++i)
+        //            std::cout << element[i] << " ";
+
+        //        auto next = element->next;
+        //        delete element;
+
+        //        while (next != _end){
+        //            next = element->next;
+        //            delete next->prev;
+        //        }
+        //        delete next;
+
+
     }
 
     mFullList(std::initializer_list<T> data): msize{0}, element{nullptr}{
@@ -43,7 +68,7 @@ public:
     }
 
 
-    T& operator[] (T index) //operator [] overload, return element by reference to change value
+    T& operator[] (size_t index) //operator [] overload, return element by reference to change value
     {
         if (index < 0 || index >= msize)
             throw std::out_of_range("Vector index out of range");
@@ -89,8 +114,8 @@ public:
 
 
 
-//            for (; temp->next != _end;)
-//                temp = temp->next;
+            //            for (; temp->next != _end;)
+            //                temp = temp->next;
 
             auto prewel = temp;
             temp->next = new_element;
@@ -106,7 +131,7 @@ public:
     void insert(unsigned int index, T data)
     {
         if(((msize == 0) && (index == 0)) ||
-         (index == msize))
+                (index == msize))
         {
             push_back(data);
             return;
