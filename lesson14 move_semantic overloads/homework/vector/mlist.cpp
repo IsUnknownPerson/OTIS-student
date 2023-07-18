@@ -1,4 +1,4 @@
-#pragma once
+//#pragma once
 #include <iostream>
 
 template <typename T>
@@ -32,7 +32,7 @@ public:
         Felement<T> *current = element;
         Felement<T> *next;// = element->next;
 
-        for (unsigned int i=0; i<(msize); ++i)
+        for (size_t i=0; i<(msize); ++i)
         {
             next = current->next;
             delete current;
@@ -70,24 +70,24 @@ public:
 
     T& operator[] (size_t index) //operator [] overload, return element by reference to change value
     {
-        if (index < 0 || index >= msize)
+        if (/*index < 0 ||*/ index >= msize)
             throw std::out_of_range("Vector index out of range");
 
         Felement<T> * temp = element;
-        for (unsigned int i=0; i<index; ++i){
+        for (size_t i=0; i<index; ++i){
             temp = temp->next;
         }
         if (temp == _end)
-            ; //TODO ASSERT
+        {} //TODO ASSERT
         return temp->value;
     }
 
-    void erase(unsigned int index){
+    void erase(size_t index){
         if (index >= msize)
-            ; //TODO ASSERT
+        {} //TODO ASSERT
 
         Felement<T> * temp = element;
-        for (unsigned int i=0; i<index; ++i){
+        for (size_t i=0; i<index; ++i){
             temp = temp->next;
         }
         temp->prev->next = temp->next;
@@ -128,7 +128,7 @@ public:
         }
     }
 
-    void insert(unsigned int index, T data)
+    void insert(size_t index, T data)
     {
         if(((msize == 0) && (index == 0)) ||
                 (index == msize))
@@ -140,7 +140,7 @@ public:
         Felement<T> *new_element = new Felement<T>;
         Felement<T> *temp = element;
 
-        for (unsigned int i=0; i<index-1; ++i)
+        for (size_t i=0; i<index-1; ++i)
             temp = temp->next;
 
         auto prewel = temp;
@@ -174,7 +174,7 @@ public:
         ++msize;
     }
 
-    int size() const {
+    size_t size() const {
         return msize;
     }
 
@@ -227,7 +227,7 @@ public:
 
 
 private:
-    int msize;
+    size_t msize;
     Felement<T> *element;
     Felement<T> *_end;
 };

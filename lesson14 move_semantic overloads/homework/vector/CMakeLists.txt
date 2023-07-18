@@ -11,5 +11,11 @@ add_executable(vector main.cpp
         vector_check.cpp
     list_check.cpp)
 
+
+target_compile_options(
+    vector PRIVATE
+    -Wall -Wextra -pedantic -Werror -fsanitize=address
+)
+
 install(TARGETS vector
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})

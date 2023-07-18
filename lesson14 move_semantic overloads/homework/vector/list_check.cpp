@@ -15,7 +15,7 @@ struct full_linked_list_checks{
         }
 
         cout << "Full linked list of " << l.size() << " elements: ";
-        for(int i=0; i<l.size(); ++i)
+        for(size_t i=0; i<l.size(); ++i)
             cout << l[i] << " ";
         cout << endl;
 
@@ -23,25 +23,25 @@ struct full_linked_list_checks{
         l.erase(6);
         l.erase(4);
         l.erase(2);
-        for(int i=0; i<l.size(); ++i)
+        for(size_t i=0; i<l.size(); ++i)
             cout << l[i] << " ";
         cout << endl;
 
         cout << "Add front element. Full linked list: ";
         l.push_front(10);
-        for(int i=0; i<l.size(); ++i)
+        for(std::size_t i=0; i<l.size(); ++i)
             cout << l[i] << " ";
         cout << endl;
 
         cout << "Add element in the middle. Full linked list: ";
         l.insert(l.size()/2, 20);
-        for(int i=0; i<l.size(); ++i)
+        for(size_t i=0; i<l.size(); ++i)
             cout << l[i] << " ";
         cout << endl;
 
         cout << "Add back element. Full linked list: ";
         l.push_back(30);
-        for(int i=0; i<l.size(); ++i)
+        for(std::size_t i=0; i<l.size(); ++i)
             cout << l[i] << " ";
         cout << endl;
         std::cout << "--------------------------\n" << std::endl;

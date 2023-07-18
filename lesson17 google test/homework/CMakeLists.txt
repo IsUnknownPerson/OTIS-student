@@ -57,7 +57,7 @@ if (MSVC)
 else ()
     target_compile_options(
         vector PRIVATE
-      #  -Wall -Wextra -pedantic -Werror -fsanitize=address
+        #-Wall -Wextra -pedantic -Werror -fsanitize=address
     )
     target_compile_options(
         test_list PRIVATE
