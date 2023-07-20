@@ -14,7 +14,7 @@ add_executable(vector main.cpp
 
 target_compile_options(
     vector PRIVATE
-    -Wall -Wextra -pedantic -Werror -fsanitize=address
+    -Wall  -pedantic  -fsanitize=address -Wextra -Werror
 )
 
 install(TARGETS vector

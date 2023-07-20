@@ -37,7 +37,7 @@ public:
         T *new_region = new T[rhs.mcapacity];
 
         for (size_t i=0; i<rhs.msize; ++i)
-           new_region[i] = rhs[i];
+           new_region[i] = rhs.region[i];
 
         region = new_region;
         msize = rhs.msize;
