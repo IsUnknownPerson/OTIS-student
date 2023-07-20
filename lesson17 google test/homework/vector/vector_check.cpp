@@ -12,12 +12,12 @@ struct vector_checks{
        std::cout << "vector base task check:" << std::endl;
         mVector<int> v;
 
-        for(int i=0; i<10; ++i){
+        for(size_t i=0; i<10; ++i){
             v.push_back(i);
         }
 
         cout << "Vector of " << v.size() << " elements: ";
-        for(int i=0; i<v.size(); ++i)
+        for(size_t i=0; i<v.size(); ++i)
             cout << v[i] << " ";
         cout << endl;
 
@@ -25,26 +25,26 @@ struct vector_checks{
         v.erase(6);
         v.erase(4);
         v.erase(2);
-        for(int i=0; i<v.size(); ++i)
+        for(std::size_t i=0; i<v.size(); ++i)
             cout << v[i] << " ";
         cout << endl;
 
         cout << "Add front element. Vector: ";
         v.push_front(10);
-        for(int i=0; i<v.size(); ++i)
+        for(size_t i=0; i<v.size(); ++i)
             cout << v[i] << " ";
         cout << endl;
 
         cout << "Add element in the middle. Vector: ";
 
         v.insert(v.size()/2, 20);
-        for(int i=0; i<v.size(); ++i)
+        for(size_t i=0; i<v.size(); ++i)
             cout << v[i] << " ";
         cout << endl;
 
         cout << "Add back element. Vector: ";
         v.push_back(30);
-        for(int i=0; i<v.size(); ++i)
+        for(size_t i=0; i<v.size(); ++i)
             cout << v[i] << " ";
         cout << endl;
 
@@ -58,27 +58,27 @@ struct vector_checks{
 
         mVector<int> vector_first{2,22,222,2222};
         cout << "vector_first:" << endl;
-        for(int i=0; i<vector_first.size(); ++i)
+        for(size_t i=0; i<vector_first.size(); ++i)
             cout << vector_first[i] << " ";
 
         mVector<int> vector_second;
         vector_second = vector_first;    //copy assignment operator
-        for(int i=0; i<vector_second.size(); ++i)
+        for(size_t i=0; i<vector_second.size(); ++i)
             cout << vector_second[i] << " ";
 
         vector_second = {1,11,111,11,3,33,333,33,7,77,777,77}; //move assignment operator
-        for(int i=0; i<vector_second.size(); ++i)
+        for(size_t i=0; i<vector_second.size(); ++i)
             cout << vector_second[i] << " ";
 
 
         mVector<int> checkCtor1{vector_second}; //copy ctor
-        for(int i=0; i<checkCtor1.size(); ++i)
+        for(size_t i=0; i<checkCtor1.size(); ++i)
             cout << checkCtor1[i] << " ";
         cout << endl;
 
         mVector<int> checkCtor2 = std::move(vector_second); //move ctor
-        vector_second = nullptr;
-        for(int i=0; i<checkCtor2.size(); ++i)
+        //vector_second = nullptr;
+        for(size_t i=0; i<checkCtor2.size(); ++i)
             cout << checkCtor2[i] << " ";
         cout << endl;
 

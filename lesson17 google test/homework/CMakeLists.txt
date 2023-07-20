@@ -61,7 +61,7 @@ else ()
     )
     target_compile_options(
         test_list PRIVATE
-       # -Wall -Wextra -pedantic -Werror
+        #-Wall -Wextra -pedantic -Werror
     )
 endif()
 
