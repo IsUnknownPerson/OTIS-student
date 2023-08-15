@@ -74,14 +74,13 @@ void merge_and_print (std::ostream& stream,
 {
     for (size_t i=1; i<dicts.size(); ++i)
     {
-        for (auto it = dicts[i].begin(); it != dicts[i].end(); it++)
+        for (auto it = dicts[i].begin(); it != dicts[i].end(); it++) //или так: for (auto &it : dicts[i]){
         {
-            auto x = dicts[0].find(it->first);
-            if (x != dicts[0].end()) //(x->first != "")
+            auto x = dicts[0].find(it->first);                      //и тут тогда auto x = dicts[0].find(it.first);
+            if (x != dicts[0].end())   //(x->first != "")
                 x->second += it->second;
             else
                 dicts[0].insert({it->first, it->second});
-                //dicts[0].insert({it->first, it->second});
         }
     }
 
@@ -135,7 +134,7 @@ Counter count_words2(char* argv) {
     std::ifstream input{argv};
     if (!input.is_open()) {
         std::cerr << "Failed to open file " << argv << '\n';
-        //return EXIT_FAILURE;
+        return counter;
     }
 
     std::for_each(std::istream_iterator<std::string>(input),
