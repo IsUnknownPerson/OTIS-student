@@ -49,9 +49,35 @@ struct full_linked_list_checks{
 
     void list_move_semantics_rValue_task()
     {
-        std::cout << "list move semantics rValue check:" << std::endl;
-        std::cout << "ERROR\n";
-        std::cout << "--------------------------\n" << std::endl;
+        cout << "list copy and move semantics check:" << endl;
+
+        mFullList<int> l1{2,22,222,2222};
+        cout << "list_first:" << endl;
+        for(size_t i=0; i<l1.size(); ++i)
+            cout << l1[i] << " ";
+
+        mFullList<int> l2;
+        l2 = l1;    //copy assignment operator
+        for(size_t i=0; i<l2.size(); ++i)
+            cout << l2[i] << " ";
+/*
+        l2 = {1,11,111,11,3,33,333,33,7,77,777,77}; //move assignment operator
+        for(size_t i=0; i<l2.size(); ++i)
+            cout << l2[i] << " ";
+
+
+        mFullList<int> checkCtor1{l2}; //copy ctor
+        for(size_t i=0; i<checkCtor1.size(); ++i)
+            cout << checkCtor1[i] << " ";
+        cout << endl;
+
+        mFullList<int> checkCtor2 = std::move(l2); //move ctor
+        //vector_second = nullptr;
+        for(size_t i=0; i<checkCtor2.size(); ++i)
+            cout << checkCtor2[i] << " ";
+        cout << endl;
+*/
+        std::cout << endl << "--------------------------\n" << std::endl;
     }
 
     void list_iterator_task()

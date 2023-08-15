@@ -19,6 +19,7 @@ int main()
     full_linked_list_checks fListChecks;
 
     fListChecks.list_base_task_check();
+  //  fListChecks.list_move_semantics_rValue_task();
     fListChecks.list_iterator_task();
 
 

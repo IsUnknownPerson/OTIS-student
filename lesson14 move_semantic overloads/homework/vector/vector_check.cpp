@@ -55,7 +55,6 @@ struct vector_checks{
     {
         cout << "vector copy and move semantics check:" << endl;
 
-
         mVector<int> vector_first{2,22,222,2222};
         cout << "vector_first:" << endl;
         for(size_t i=0; i<vector_first.size(); ++i)

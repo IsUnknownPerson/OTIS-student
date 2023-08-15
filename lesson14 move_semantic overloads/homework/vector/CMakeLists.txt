@@ -12,9 +12,10 @@ add_executable(vector main.cpp
     list_check.cpp)
 
 
+add_link_options(-fsanitize=address)
 target_compile_options(
-    vector PRIVATE
-    -Wall  -pedantic  -fsanitize=address -Wextra -Werror
+    vector PRIVATE    
+    -Wall  -pedantic  -Wextra -Werror #-fsanitize=address
 )
 
 install(TARGETS vector

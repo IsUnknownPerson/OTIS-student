@@ -64,8 +64,21 @@ public:
         for (auto &l : data){
             push_back(l);
         }
-
     }
+
+    //copy assignment operator
+//    mFullList& operator = (mFullList &rhs){
+//        std::cout << std::endl << "copy assignment operator" << std::endl;
+//        T *new_element = new Felement<T>;
+//        element = new_element;
+
+//        for (size_t i=0; i<rhs.msize; ++i){
+//            this->push_back(rhs.value);
+//        }
+
+//        return *this;
+//    }
+
 
 
     T& operator[] (size_t index) //operator [] overload, return element by reference to change value

@@ -20,11 +20,6 @@ public:
         }
     }
 
-    //    mVector(const mVector &over)
-    //    {
-
-    //    }
-
     ~mVector(){
         //if(region) //nullptr можно удалять безболезненно
         delete [] region;
@@ -69,11 +64,6 @@ public:
         return *this;
     }
 
-    //    mVector& operator = (std::nullptr_t){
-    //        region = nullptr;
-    //        return *this;
-    //    }
-
 
     T& operator[] (size_t index) //operator [] overload, return element by reference to change value
     {
@@ -82,10 +72,6 @@ public:
         return region[index];
     }
 
-//    T  operator[] (size_t index)
-//     {
-//         return region[index];
-//     }
 
     mVector& operator = (mVector &&rhs) noexcept{
         std::cout << std::endl << "move assignment operator" << std::endl;
@@ -214,9 +200,6 @@ public:
         bool operator !=  (const iterator &over) {
             return begin != over.begin;
         }
-        //        bool operator == (const iterator &over) {
-        //            return begin == over.begin;
-        //        }
 
     private:
         T* begin;

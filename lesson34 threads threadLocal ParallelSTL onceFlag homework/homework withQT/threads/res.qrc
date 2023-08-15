@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/iamges">
+        <file>free-icon-file-1090971.png</file>
+        <file>free-icon-instruction-8673767.png</file>
+        <file>free-icon-open-folder-10833561.png</file>
+    </qresource>
+</RCC>
