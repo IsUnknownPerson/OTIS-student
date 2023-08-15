@@ -22,7 +22,7 @@ using Counter = std::map<std::string, std::size_t>;
 
 inline std::string tolower(const std::string &str);
 
-std::vector<Counter::const_iterator> count_words(std::istream& stream, Counter &counter);
+//std::vector<Counter::const_iterator> count_words(std::istream& stream, Counter &counter);
 
 Counter count_words2(char*);
 
@@ -30,7 +30,7 @@ Counter count_words2(char*);
 std::vector<Counter::const_iterator> sort_words(const Counter&, const size_t k);
 
 void merge_and_print (std::ostream& stream,
-                      std::vector<Counter>);
+                      std::vector<Counter> &);
 
 
 
@@ -51,9 +51,7 @@ int main(int argc, char *argv[]) {
 
     for (int i = 1; i < argc; ++i)
     {
-
         tasks.push_back(std::async(std::launch::async, count_words2, argv[i]));
-
     }
 
     for (size_t i=0; i<tasks.size(); ++i)
@@ -72,16 +70,18 @@ int main(int argc, char *argv[]) {
 }
 
 void merge_and_print (std::ostream& stream,
-                      std::vector<Counter> dicts)
+                      std::vector<Counter> &dicts)
 {
-    for (size_t i=1; i<dicts.size(); ++i){
+    for (size_t i=1; i<dicts.size(); ++i)
+    {
         for (auto it = dicts[i].begin(); it != dicts[i].end(); it++)
         {
             auto x = dicts[0].find(it->first);
-            if (x->first != "")
+            if (x != dicts[0].end()) //(x->first != "")
                 x->second += it->second;
             else
                 dicts[0].insert({it->first, it->second});
+                //dicts[0].insert({it->first, it->second});
         }
     }
 
@@ -117,6 +117,7 @@ std::string tolower(const std::string &str) {
     return lower_str;
 };
 
+/*
 std::vector<Counter::const_iterator> count_words(std::istream& stream, Counter &counter) {
 
     std::for_each(std::istream_iterator<std::string>(stream),
@@ -125,6 +126,7 @@ std::vector<Counter::const_iterator> count_words(std::istream& stream, Counter &
 
     return sort_words(std::move(counter), TOPK);
 }
+*/
 
 Counter count_words2(char* argv) {
 
@@ -155,9 +157,9 @@ std::vector<Counter::const_iterator> sort_words(const Counter& counter, const si
 
     std::partial_sort(
                 std::begin(words), std::begin(words) + k, std::end(words),
-                [](auto lhs, auto &rhs) { return lhs->second > rhs->second; });
+                [](auto const &lhs, auto const &rhs) { return lhs->second > rhs->second; });
 
-    return std::move(words);
+    return words;
 }
 
 
