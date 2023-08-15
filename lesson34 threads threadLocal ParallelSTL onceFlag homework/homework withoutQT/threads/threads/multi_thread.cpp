@@ -27,7 +27,7 @@ inline std::string tolower(const std::string &str);
 Counter count_words2(char*);
 
 
-std::vector<Counter::const_iterator> sort_words(const Counter&, const size_t k);
+//std::vector<Counter::const_iterator> sort_words(const Counter&, const size_t k);
 
 void merge_and_print (std::ostream& stream,
                       std::vector<Counter> &);
@@ -141,12 +141,12 @@ Counter count_words2(char* argv) {
                   std::istream_iterator<std::string>(),
                   [&counter](const std::string &s) { ++counter[tolower(s)]; });
 
-    sort_words(std::move(counter), TOPK);
+    //sort_words(std::move(counter), TOPK);
 
     return counter;
 }
 
-
+/*
 std::vector<Counter::const_iterator> sort_words(const Counter& counter, const size_t k) {
     std::vector<Counter::const_iterator> words;
     words.reserve(counter.size());
@@ -160,5 +160,5 @@ std::vector<Counter::const_iterator> sort_words(const Counter& counter, const si
 
     return words;
 }
-
+*/
 
