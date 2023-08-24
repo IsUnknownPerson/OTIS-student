@@ -28,9 +28,10 @@ namespace motivation {
 
 	struct Struct2 {
 		// ...
-	};
+    };
 
-	struct Struct3 {
+    struct Struct3
+    {
 		// ...
 	};
 
@@ -68,9 +69,9 @@ namespace crtp {
 		bool operator<(const Struct1 &rhs) const {
 			return m_value < rhs.m_value;
 		}
-	private:
-		int m_value;
-	};
+    private:
+        int m_value;
+    };
 
 	template <class T>
 	bool operator<(const comparable<T> &lhs, const comparable<T> &rhs) {
@@ -88,7 +89,16 @@ namespace crtp {
 	template <class T>
 	bool operator!=(const comparable<T> &lhs, const comparable<T> &rhs) {
 		return !(lhs == rhs);
-	}
+    }
+
+/*    template<> //Если для Struct1 этот метод должен быть не таким как для других
+    bool operator!=(const comparable<Struct1> &lhs, const comparable<Struct1> &rhs){
+        std:: cout << "For Struct2 always false";  return !(false);
+    } // Сужаем шаблон для Struct1   */
+
+
+    struct Struct2 : public comparable<Struct2> {};
+    struct Struct3 : public comparable<Struct3> {};
 
 	void example() {
 		std::cout << "crtp::example()" << std::endl;
@@ -102,10 +112,13 @@ namespace crtp {
 
 		std::cout << std::endl
 				  << std::endl;
+
+        Struct3 s31{42};
+        Struct3 s32{56};
+        std::cout << "s31 < s32: " << (s31 < s32) << std::endl;
 	}
 
-	struct Struct2 : public comparable<Struct2> {};
-	struct Struct3 : public comparable<Struct3> {};
+
 }
 
 int main() {

@@ -2,20 +2,18 @@
 
 #include <algorithm>
 #include <cctype>
+#include <chrono>
 #include <cstdlib>
 #include <fstream>
+#include <future>
 #include <iomanip>
 #include <iostream>
 #include <iterator>
 #include <map>
-#include <vector>
-#include <chrono>
 #include <thread>
-#include <future>
-
+#include <vector>
 
 const size_t TOPK = 10;
-
 
 using Counter = std::map<std::string, std::size_t>;
 //  Counter counter;
@@ -24,17 +22,14 @@ inline std::string tolower(const std::string &str);
 
 //std::vector<Counter::const_iterator> count_words(std::istream& stream, Counter &counter);
 
-Counter count_words2(char*);
-
+Counter count_words2(char *);
 
 //std::vector<Counter::const_iterator> sort_words(const Counter&, const size_t k);
 
-void merge_and_print (std::ostream& stream,
-                      std::vector<Counter> &);
+void merge_and_print(std::ostream &stream, std::vector<Counter> &);
 
-
-
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     if (argc < 2) {
         std::cerr << "Usage: topk_words [FILES...]\n";
         return EXIT_FAILURE;
@@ -49,14 +44,16 @@ int main(int argc, char *argv[]) {
     auto start = std::chrono::high_resolution_clock::now();
     std::vector<Counter> dicts;
 
-    for (int i = 1; i < argc; ++i)
-    {
+    for (int i = 1; i < argc; ++i) {
         tasks.push_back(std::async(std::launch::async, count_words2, argv[i]));
     }
 
-    for (size_t i=0; i<tasks.size(); ++i)
-        tasks[i].wait();
-    for (size_t i=0; i<tasks.size(); ++i)
+    /*
+    for (size_t i = 0; i < tasks.size(); ++i)
+        tasks[i].wait(); */ //Не нужно Внутри get() также будем ждать,
+    //если результат еще не готов. Надо было заняться push_back словарей
+    // по мере того как потоки диктсы выплевывали. А еще лучше, их слиянием.
+    for (size_t i = 0; i < tasks.size(); ++i)
         dicts.push_back(tasks[i].get());
 
     merge_and_print(std::cout, dicts);
@@ -69,48 +66,44 @@ int main(int argc, char *argv[]) {
     std::cout << elapsed_s.count() << "s\n";
 }
 
-void merge_and_print (std::ostream& stream,
-                      std::vector<Counter> &dicts)
+void merge_and_print(std::ostream &stream, std::vector<Counter> &dicts)
 {
-    for (size_t i=1; i<dicts.size(); ++i)
-    {
-        for (auto it = dicts[i].begin(); it != dicts[i].end(); it++) //или так: for (auto &it : dicts[i]){
+    for (size_t i = 1; i < dicts.size(); ++i) {
+        for (auto it = dicts[i].begin(); it != dicts[i].end();
+             it++) //или так: for (auto &it : dicts[i]){
         {
-            auto x = dicts[0].find(it->first);                      //и тут тогда auto x = dicts[0].find(it.first);
-            if (x != dicts[0].end())   //(x->first != "")
+            auto x = dicts[0].find(it->first); //и тут тогда auto x = dicts[0].find(it.first);
+            if (x != dicts[0].end())           //(x->first != "")
                 x->second += it->second;
             else
                 dicts[0].insert({it->first, it->second});
         }
     }
 
-
     std::vector<Counter::const_iterator> words;
     words.reserve(dicts[0].size());
 
+    for (auto it = std::cbegin(dicts[0]); it != std::cend(dicts[0]); ++it) {
+        words.push_back(it);
+    }
 
-        for (auto it = std::cbegin(dicts[0]); it != std::cend(dicts[0]); ++it) {
-            words.push_back(it);
-        }
+    std::partial_sort(std::begin(words),
+                      std::begin(words) + TOPK,
+                      std::end(words),
+                      [](auto lhs, auto &rhs) { return lhs->second > rhs->second; });
 
-
-    std::partial_sort(
-                std::begin(words), std::begin(words) + TOPK, std::end(words),
-                [](auto lhs, auto &rhs) { return lhs->second > rhs->second; });
-
-    std::for_each(
-                std::begin(words), std::begin(words) + TOPK,
-                [&stream](const Counter::const_iterator &pair) {
-        stream << std::setw(4) << pair->second << " " << pair->first
-               << '\n';
-    });
-  /*  */
+    std::for_each(std::begin(words),
+                  std::begin(words) + TOPK,
+                  [&stream](const Counter::const_iterator &pair) {
+                      stream << std::setw(4) << pair->second << " " << pair->first << '\n';
+                  });
 }
 
-
-std::string tolower(const std::string &str) {
+std::string tolower(const std::string &str)
+{
     std::string lower_str;
-    std::transform(std::cbegin(str), std::cend(str),
+    std::transform(std::cbegin(str),
+                   std::cend(str),
                    std::back_inserter(lower_str),
                    [](unsigned char ch) { return std::tolower(ch); });
     return lower_str;
@@ -127,8 +120,8 @@ std::vector<Counter::const_iterator> count_words(std::istream& stream, Counter &
 }
 */
 
-Counter count_words2(char* argv) {
-
+Counter count_words2(char *argv)
+{
     Counter counter;
 
     std::ifstream input{argv};
@@ -136,6 +129,7 @@ Counter count_words2(char* argv) {
         std::cerr << "Failed to open file " << argv << '\n';
         return counter;
     }
+
 
     std::for_each(std::istream_iterator<std::string>(input),
                   std::istream_iterator<std::string>(),
@@ -161,4 +155,3 @@ std::vector<Counter::const_iterator> sort_words(const Counter& counter, const si
     return words;
 }
 */
-

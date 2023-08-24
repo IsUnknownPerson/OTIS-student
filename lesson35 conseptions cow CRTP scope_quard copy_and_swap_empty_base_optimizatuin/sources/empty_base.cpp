@@ -111,6 +111,7 @@ struct Struct1 {
 		Struct1 struct1;
 		Struct2 struct2;
 		Other other;
+        other.do_something();
 		Other2 other2;
 
 		std::cout << "sizeof(struct1) = " << sizeof(struct1) << std::endl;
