@@ -1,10 +1,13 @@
 #pragma once
 
-#include <QObject>
 #include <QDebug>
+#include <QObject>
 
+enum class Buttons : int { StartLog, StopLog, Connect, Disconnect };
 
-enum class _Car_Model : int { model_unknown, Haval, VAZ, OMODA };
+enum class Adapter : int { Not_chosed, GrayBox, Systec };
+
+//enum class _Car_Model : int { model_unknown, Haval, VAZ, OMODA };
 
 enum class _Mode : int { Trunsparent, Packet, Monitoring_standard, Monitoring_extended };
 
@@ -21,53 +24,76 @@ enum class _UARTSpeed : int {
 
 enum class _Type_of_canID : int { standard, extended };
 
-typedef QString _CanIdTx;
-typedef QString _CanIdRx;
-typedef QString _zagluski;
-
-struct car_unknown
+class my_car
 {
-    const _Car_Model model = _Car_Model::model_unknown;
-    const static _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
-    const _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
-    const _Type_of_canID canID = _Type_of_canID::standard;
-    const _CanIdTx CanIdTx = "AAA";
-    const _CanIdRx CanIdRx = "BBB";
-    const _zagluski zagluski = "AA";
+private:
+    struct _car_unknown
+    {
+        const QString model = "Выберите авто";
+        const _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
+        const _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
+        const _Type_of_canID canID = _Type_of_canID::standard;
+        const QString CanIdTx = "0AAA";
+        const QString CanIdRx = "0BBB";
+        const QString zagluski = "AA";
+    };
+
+    struct _Haval
+    {
+        const QString model = "Хавэйл";
+        const _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
+        const _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
+        const _Type_of_canID canID = _Type_of_canID::standard;
+        const QString CanIdTx = "07DE";
+        const QString CanIdRx = "079E";
+        const QString zagluski = "AA";
+    };
+
+    struct _VAZ
+    {
+        const QString model = "АвтоВАЗ";
+        const _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
+        const _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
+        const _Type_of_canID canID = _Type_of_canID::standard;
+        const QString CanIdTx = "07DA";
+        const QString CanIdRx = "07CA";
+        const QString zagluski = "AA";
+    };
+
+    struct _OMODA
+    {
+        const QString model = "ОМОДА";
+        const _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
+        const _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
+        const _Type_of_canID canID = _Type_of_canID::standard;
+        const QString CanIdTx = "0778";
+        const QString CanIdRx = "0768";
+        const QString zagluski = "AA";
+    };
+
+     _car_unknown car_unknown;
+     _Haval Haval;
+     _VAZ VAZ;
+     _OMODA OMODA;
+
+public:
+    explicit my_car(QString);
+    QString model;
+    _CanSpeed canSpeed;
+    _UARTSpeed uartSpeed;
+    _Type_of_canID canID;
+    QString CanIdTx;
+    QString CanIdRx;
+    QString zagluski;
+
+    const QStringList Cars = {{car_unknown.model},
+                        {VAZ.model},
+                        {OMODA.model},
+                        {Haval.model}};
 };
 
-struct Haval
-{
-    const _Car_Model model = _Car_Model::Haval;
-    const static _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
-    const _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
-    const _Type_of_canID canID = _Type_of_canID::standard;
-    const _CanIdTx CanIdTx = "07DE";
-    const _CanIdRx CanIdRx = "079E";
-    const _zagluski zagluski = "AA";
-};
 
-struct VAZ
-{
-    const _Car_Model model = _Car_Model::VAZ;
-    const static _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
-    const _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
-    const _Type_of_canID canID = _Type_of_canID::standard;
-    const _CanIdTx CanIdTx = "07DA";
-    const _CanIdRx CanIdRx = "07CA";
-    const _zagluski zagluski = "AA";
-};
 
-struct OMODA
-{
-    const _Car_Model model = _Car_Model::OMODA;
-    const static _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
-    const _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
-    const _Type_of_canID canID = _Type_of_canID::standard;
-    const _CanIdTx CanIdTx = "0778";
-    const _CanIdRx CanIdRx = "0768";
-    const _zagluski zagluski = "AA";
-};
 
 
 /*
@@ -106,7 +132,3 @@ private:
 in cpp    Cars::get()->test();
 in cpp    Cars::get()->canSpeed();
 */
-
-
-
-
