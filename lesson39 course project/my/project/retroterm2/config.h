@@ -3,11 +3,19 @@
 #include <QDebug>
 #include <QObject>
 
-enum class Buttons : int { StartLog, StopLog, Connect, Disconnect };
+enum class Buttons : int { StartLog, StopLog, Connect, Disconnect, Send };
 
 enum class Adapter : int { Not_chosed, GrayBox, Systec };
 
-//enum class _Car_Model : int { model_unknown, Haval, VAZ, OMODA };
+enum class Quere_type : int { None, Permanent, One_time, Car_Emulate };
+
+struct _connection_status
+{
+    enum class _Adapter : int { Connected, Disconnected, Failed_to_connect };
+    enum class _TCU : int { Answering, Not_answering };
+    _Adapter Adapter;
+    _TCU TCU;
+};
 
 enum class _Mode : int { Trunsparent, Packet, Monitoring_standard, Monitoring_extended };
 
@@ -24,8 +32,41 @@ enum class _UARTSpeed : int {
 
 enum class _Type_of_canID : int { standard, extended };
 
-class my_car
+enum class uds_task : int {
+    None,
+    keep_alive,
+
+    gnss_reliability,
+    gnss_coords,
+
+    ICCIDG,
+
+    DTC,
+
+    SW_Version,
+    Vehicle_SW_Version,
+    Midlet_SW_Version,
+    Boot_SW_Version,
+
+    Accelerometer //angle
+};
+
+
+struct car_struct
 {
+public:
+    QString model = "Выберите авто";
+    _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
+    _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
+    _Type_of_canID canID = _Type_of_canID::standard;
+    QString CanIdTx = "0AAA";
+    QString CanIdRx = "0BBB";
+    QString zagluski = "AA";
+    static QStringList cars_all();
+};
+car_struct _car(QString);
+
+/*
 private:
     struct _car_unknown
     {
@@ -44,8 +85,8 @@ private:
         const _CanSpeed canSpeed = _CanSpeed::_500_KBaud;
         const _UARTSpeed uartSpeed = _UARTSpeed::_115_2_KBaud;
         const _Type_of_canID canID = _Type_of_canID::standard;
-        const QString CanIdTx = "07DE";
-        const QString CanIdRx = "079E";
+        const QString CanIdRx = "07DE";
+        const QString CanIdTx = "079E";
         const QString zagluski = "AA";
     };
 
@@ -76,6 +117,8 @@ private:
      _VAZ VAZ;
      _OMODA OMODA;
 
+
+
 public:
     explicit my_car(QString);
     QString model;
@@ -85,16 +128,22 @@ public:
     QString CanIdTx;
     QString CanIdRx;
     QString zagluski;
+    QMap<uds_task, QString> all_cmds{
+        {uds_task::keep_alive, "3E00"},
+        {uds_task::gnss_reliability, "220008"},
+        {uds_task::gnss_coords, "220007"},
+        {uds_task::ICCIDG, "22001D"},
+        {uds_task::DTC, "1902FF"},
+        {uds_task::SW_Version, "220409"},
+        {uds_task::Vehicle_SW_Version, "22040A"},
+        {uds_task::Midlet_SW_Version, "22040B"},
+        {uds_task::Boot_SW_Version, "22040D"},
+        {uds_task::Accelerometer, "220401"}
+    };
 
-    const QStringList Cars = {{car_unknown.model},
-                        {VAZ.model},
-                        {OMODA.model},
-                        {Haval.model}};
-};
-
-
-
-
+    const QStringList Cars = {{car_unknown.model}, {VAZ.model}, {OMODA.model}, {Haval.model}};
+    test work;
+*/
 
 /*
 class Cars //singltone

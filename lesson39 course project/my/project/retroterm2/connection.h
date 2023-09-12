@@ -2,24 +2,37 @@
 
 #include "config.h"
 #include "adapter/systec.h"
+//#include "systectf.h"
+
+#include <QObject>
 
 
-class connection
+class connection : public QObject
 {
+    Q_OBJECT
+
 public:
-    explicit connection();//Adapter);
+    explicit connection(QObject *parent = nullptr);
     ~connection();
 
-    void connect_Adapter(my_car);
+    void connect_Adapter(QString); //conect and init
     void disconnect_Adapter();
-    void setup_Adapter();
-    QString getStatus();
-    void send(QString);
-    void receive();
+    void send(uchar *);
+
+signals:
+    void recive(uchar *); //always 8 bytes
+    void adapter_says(_connection_status::_Adapter);
+
+public slots:
+    void adapter_stat(_connection_status::_Adapter);
+    void ready_read(uchar*);
 
 private:
-    systec *pSystec;
- //   grayBox pGrayBox;
+       systec *pAdapter;
+
+       uchar data[8];
+       car_struct car;
+    // grayBox pGrayBox;
 };
 
 

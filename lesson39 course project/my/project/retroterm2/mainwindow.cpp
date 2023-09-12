@@ -19,10 +19,12 @@ MainWindow::MainWindow(QWidget *parent)
             pLogic,
             qOverload<Buttons>(&logic::button_pressed));
     connect(this,
-            qOverload<Buttons, my_car>(&MainWindow::button_pressed),
+            qOverload<Buttons, QString>(&MainWindow::button_pressed),
             pLogic,
-            qOverload<Buttons, my_car>(&logic::button_pressed));
+            qOverload<Buttons, QString>(&logic::button_pressed));
 
+    connect(pLogic, &logic::recive, this, &MainWindow::recive_from_adapter);
+    connect(pLogic, &logic::conection_stat, this, &MainWindow::conection_stat);
     init_gui();
 
 
@@ -37,8 +39,7 @@ void MainWindow::init_gui()
     ui->lblTCU->setText("БЭГ не отвечает");
     ui->lblTCU->setStyleSheet(Grey); //highlighting[none]);
 
-    my_car cars("Выберите авто");
-    ui->comboSelectCar->addItems(cars.Cars);
+    ui->comboSelectCar->addItems(car_struct::cars_all());
 
     ui->buttonStopLog->setEnabled(false);
     ui->buttonStartLog->setEnabled(false);
@@ -64,8 +65,20 @@ void MainWindow::on_buttonConect_clicked()
     ui->comboSelectCar->setEnabled(false);
     ui->buttonDisconect->setEnabled(true);
 
-    my_car car(ui->comboSelectCar->currentText());
-    emit button_pressed(Buttons::Connect, car);
+    auto xx = ui->comboSelectCar->currentText();
+    emit button_pressed(Buttons::Connect, xx);
+}
+
+void MainWindow::on_buttonDisconect_clicked()
+{
+    emit button_pressed(Buttons::Disconnect);
+    ui->buttonConect->setEnabled(true);
+}
+
+void MainWindow::on_buttonTX_clicked()
+{
+    auto xx = ui->lineEditSend->text();
+    emit button_pressed(Buttons::Send, xx);
 }
 
 void MainWindow::on_buttonStartLog_clicked()
@@ -116,6 +129,43 @@ void MainWindow::on_cBoxDistance_clicked(bool checked)
     log_chosed ? bsl(true) : bsl(false);
 }
 
+void MainWindow::recive_from_adapter(QString data)
+{
+    ui->tBrowserRX->append(data);
+}
+
+void MainWindow::conection_stat(_connection_status stat)
+{
+    if (stat.Adapter == _connection_status::_Adapter::Connected) {
+        ui->lblAdapter->setText("адаптер подключен");
+        ui->lblAdapter->setStyleSheet(Green);
+    }
+    else if (stat.Adapter == _connection_status::_Adapter::Disconnected)
+    {
+        ui->lblAdapter->setText("адаптер отключен");
+        ui->lblAdapter->setStyleSheet(Grey);
+    }
+    else if (stat.Adapter == _connection_status::_Adapter::Failed_to_connect)
+    {
+        ui->lblAdapter->setText("проверьте адаптер");
+        ui->lblAdapter->setStyleSheet(Red);
+    }
+    else
+        qDebug() << "ERROR mainwindow: " << __LINE__;
+
+    if (stat.TCU == _connection_status::_TCU::Answering) {
+        ui->lblTCU->setText("адаптер подключен");
+        ui->lblTCU->setStyleSheet(Green);
+    }
+    else if (stat.TCU == _connection_status::_TCU::Not_answering)
+    {
+        ui->lblTCU->setText("адаптер отключен");
+        ui->lblTCU->setStyleSheet(Grey);
+    }
+    else
+        qDebug() << "ERROR mainwindow: " << __LINE__;
+}
+
 MainWindow::~MainWindow()
 {
     logicThread.quit();
@@ -123,3 +173,9 @@ MainWindow::~MainWindow()
     pLogic->deleteLater();
     delete ui;
 }
+
+
+
+
+
+

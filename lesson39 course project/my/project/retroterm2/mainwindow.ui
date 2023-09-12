@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>745</width>
+    <width>1013</width>
     <height>415</height>
    </rect>
   </property>
@@ -32,7 +32,7 @@
        <item>
         <widget class="QLabel" name="lblAdapter">
          <property name="text">
-          <string>adapter</string>
+          <string>адаптер отключен</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -444,13 +444,55 @@
      </item>
     </layout>
    </widget>
+   <widget class="QGroupBox" name="gBoxConnection_4">
+    <property name="geometry">
+     <rect>
+      <x>760</x>
+      <y>0</y>
+      <width>241</width>
+      <height>371</height>
+     </rect>
+    </property>
+    <property name="title">
+     <string/>
+    </property>
+    <layout class="QGridLayout" name="gridLayout_5">
+     <item row="3" column="0">
+      <widget class="QTextBrowser" name="tBrowserRX">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Expanding" vsizetype="Minimum">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="buttonTX">
+       <property name="text">
+        <string>Send</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QLineEdit" name="lineEditSend"/>
+     </item>
+     <item row="2" column="0">
+      <widget class="QLineEdit" name="lineEdit">
+       <property name="text">
+        <string>023E00AAAAAAAAAA</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>745</width>
+     <width>1013</width>
      <height>21</height>
     </rect>
    </property>

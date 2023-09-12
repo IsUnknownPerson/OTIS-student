@@ -29,7 +29,11 @@ public:
 
 signals:
     void button_pressed(Buttons);
-    void button_pressed(Buttons, my_car);
+    void button_pressed(Buttons, QString);
+
+public slots:
+    void recive_from_adapter(QString);
+    void conection_stat(_connection_status);
 
 private slots:
     void on_comboSelectCar_currentIndexChanged(int index);
@@ -41,6 +45,9 @@ private slots:
     void on_cBoxCoordinates_clicked(bool checked);
     void on_cBoxDTClist_clicked(bool checked);
     void on_cBoxDistance_clicked(bool checked);
+    void on_buttonDisconect_clicked();
+
+    void on_buttonTX_clicked();
 
 private:
     void init_gui();
