@@ -27,6 +27,7 @@ public slots:
 private:
     connection *pConnection;
     UDS *pUDS;
+    car_struct car;
 
     _connection_status connection_status;
 

@@ -39,6 +39,9 @@ void logic::button_pressed(Buttons but, QString data)
 {
     if (but == Buttons::Connect)
     {
+        car = _car(data);
+//pConnection->connect_Adapter(car);  !!!!!!~!
+        //!!!!!!!!!!!!!!!!!!!!!!!!!!
         pConnection->connect_Adapter(data);
         qDebug() << "logic: buton connect pressed";
     }

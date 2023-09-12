@@ -1,9 +1,7 @@
 cmake_minimum_required(VERSION 3.5)
 
-set(PATCH_VERSION "1" CACHE INTERNAL "Patch version")
-#set(PROJECT_VERSION_PATCH 0.0.${PATCH_VERSION})
+set(PATCH_VERSION "5" CACHE INTERNAL "Patch version")
 
-#project(helloworld VERSION ${PROJECT_VERSION_PATCH})
 set(PROJECT_VERSION 0.0.${PATCH_VERSION})
 
 project(helloworld VERSION ${PROJECT_VERSION})
@@ -13,13 +11,17 @@ project(homework LANGUAGES CXX)
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
+set(PROJECT_VERSION_PATCH ${PATCH_VERSION})
+
 configure_file(version.h.in version.h)
+
+
 
 add_executable(homework main.cpp)
 add_library(helloworld lib.cpp)
 #add_executable(test_version test_version.cpp)
 
-
+include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 target_include_directories(helloworld
     PRIVATE "${CMAKE_BINARY_DIR}"
@@ -32,12 +34,14 @@ install(TARGETS homework
     #LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR})
 
 
-    set(CPACK_GENERATOR DEB)
+
+
+#    set(CPACK_GENERATOR DEB)
 #
-   set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
-  set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
- set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
+#   set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
+#  set(CPACK_PACKAGE_VERSION_MINOR "${PROJECT_VERSION_MINOR}")
+# set(CPACK_PACKAGE_VERSION_PATCH "${PROJECT_VERSION_PATCH}")
 #
-   set(CPACK_PACKAGE_CONTACT example@example.com)
+#   set(CPACK_PACKAGE_CONTACT example@example.com)
 #
-    include(CPack)
+#    include(CPack)
