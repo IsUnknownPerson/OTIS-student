@@ -9,6 +9,7 @@ CONFIG += c++17
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    UDS/decoding.cpp \
     UDS/uds.cpp \
     adapter/systec/save_array/save_array.cpp \
     adapter/systec/save_transcriotion/save_transcriotion.cpp \
@@ -22,6 +23,7 @@ SOURCES += \
     utils.cpp
 
 HEADERS += \
+    UDS/decoding.h \
     UDS/uds.h \
     adapter/systec/i_adapter.h \
     adapter/systec/save_array/save_array.h \

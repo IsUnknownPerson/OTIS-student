@@ -1,7 +1,7 @@
 #include "config.h"
 
 
-QMap<QString, car_struct> tt = {{"Выберите авто",
+QMap<QString, car_struct> car_settings = {{"Выберите авто",
                                   {"Выберите авто",
                                    _CanSpeed::_500_KBaud,
                                    _UARTSpeed::_115_2_KBaud,
@@ -43,7 +43,7 @@ QStringList car_struct::cars_all()
 
 car_struct _car(QString cur_car)
 {
-    return tt[cur_car];
+    return car_settings[cur_car];
 }
 
 

@@ -4,6 +4,9 @@
 logic::logic(QObject *parent)
     : QObject{parent}
 {
+    pUDS = new UDS(this);
+    connect(pUDS, &UDS::send_to_tcu, this, &logic::send_to_connection);
+
     pConnection = new connection(this);
     connect(pConnection, &connection::recive, this, &logic::recive_from_connection);
     connect(pConnection, &connection::adapter_says, this, &logic::adapter_stat);
@@ -13,8 +16,16 @@ logic::logic(QObject *parent)
 }
 
 
+void logic::send_to_connection(Source source, QString data)
+{
+    auto x = utils::from_string_to_uchar(data);
+    pConnection->send(x);
+}
+
 void logic::recive_from_connection(uchar *d)
 {
+    pUDS->from_TCU(d);
+
     QString data;
     for (size_t i = 0; i < 8; ++i) {
         auto x = data.number(d[i], 16);
@@ -40,9 +51,8 @@ void logic::button_pressed(Buttons but, QString data)
     if (but == Buttons::Connect)
     {
         car = _car(data);
-//pConnection->connect_Adapter(car);  !!!!!!~!
-        //!!!!!!!!!!!!!!!!!!!!!!!!!!
         pConnection->connect_Adapter(data);
+        pUDS->setCar(data);
         qDebug() << "logic: buton connect pressed";
     }
     else if (but == Buttons::Send) {
@@ -50,9 +60,7 @@ void logic::button_pressed(Buttons but, QString data)
             qDebug() << "ERROR logic Buttons::Send";
             return;
         }
-        auto x = utils::from_string_to_uchar(data);
-
-        pConnection->send(x);
+        send_to_connection(Source::MainWindow, data);
     }
     else
         qDebug() << "Error. logic нет кнопки: " << __LINE__;
@@ -66,8 +74,8 @@ void logic::adapter_stat(_connection_status::_Adapter stat)
     if (stat == _connection_status::_Adapter::Connected)
         ;
 
-    pUDS->make_qure(Quere_type::Car_Emulate, uds_task::Accelerometer, 44);
-    pUDS->make_qure(Quere_type::Car_Emulate, uds_task::Accelerometer);
+    pUDS->make_qure(Quere_type::Permanent, uds_task::keep_alive);
+    pUDS->make_qure(Quere_type::Permanent, uds_task::gnss_reliability);
 
     //UDS(Quere_type::One_time, uds_task::keep_alive);
         //pConnection->send("jkhkjh");

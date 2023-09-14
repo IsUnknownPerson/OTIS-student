@@ -7,6 +7,8 @@ enum class Buttons : int { StartLog, StopLog, Connect, Disconnect, Send };
 
 enum class Adapter : int { Not_chosed, GrayBox, Systec };
 
+enum class Source : int {Unknown, MainWindow, Connection, UDS, Logic };
+
 enum class Quere_type : int { None, Permanent, One_time, Car_Emulate };
 
 struct _connection_status

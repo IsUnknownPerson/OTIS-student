@@ -19,6 +19,7 @@ signals:
 
 public slots:
     void recive_from_connection(uchar *);
+    void send_to_connection(Source source, QString data);
     void adapter_stat(_connection_status::_Adapter);
 
     void button_pressed(Buttons);
