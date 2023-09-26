@@ -17,9 +17,9 @@ jobs:
           submodules: true
       - run: sudo apt-get update && sudo apt-get install cmake libboost-test-dev -y
       - run: cmake ./professional -DPATCH_VERSION=${{ github.run_number }}
-      - run: cmake --build ./professional
-      - run: cmake --build ./professional --target test
-      - run: cmake --build ./professional --target package
+      - run: cmake --build .
+      - run: cmake --build . --target test
+      - run: cmake --build . --target package
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
