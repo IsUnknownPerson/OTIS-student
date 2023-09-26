@@ -68,14 +68,24 @@ void logic::button_pressed(Buttons but, QString data)
 
 void logic::adapter_stat(_connection_status::_Adapter stat)
 {
+    //qDebug() << "logic::adapter_stat";
+
     connection_status.Adapter = stat;
     emit conection_stat(connection_status);
 
-    if (stat == _connection_status::_Adapter::Connected)
-        ;
+    if (stat == _connection_status::_Adapter::Connected) {
+        for (auto &task : permanent_mainWindow) {
+            pUDS->make_qure(Quere_type::Permanent, task);
+            qDebug() << "insert task";
+        }
+    }
 
-    pUDS->make_qure(Quere_type::Permanent, uds_task::keep_alive);
-    pUDS->make_qure(Quere_type::Permanent, uds_task::gnss_reliability);
+
+
+
+
+    //pUDS->make_qure(Quere_type::Permanent, uds_task::keep_alive);
+    //pUDS->make_qure(Quere_type::Permanent, uds_task::gnss_reliability);
 
     //UDS(Quere_type::One_time, uds_task::keep_alive);
         //pConnection->send("jkhkjh");

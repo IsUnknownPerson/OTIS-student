@@ -59,3 +59,26 @@ private:
 
     int log_chosed = 0;
 };
+
+/*
+//!!!!!---- Изменение верхнего элемента QComboBox
+#include <QProxyStyle>
+#include <QPainter>
+class MyProxyStyle : public QProxyStyle
+{
+    void drawControl(QStyle::ControlElement el,
+                     const QStyleOption *op,
+                     QPainter *painter,
+                     const QWidget *widget = nullptr) const override
+    {
+        if (el == QStyle::CE_ComboBoxLabel) {
+            auto fnt = painter->font();
+            fnt.setItalic(true);
+            fnt.setPointSize(15);
+            painter->setFont(fnt);
+        }
+        QProxyStyle::drawControl(el, op, painter, widget);
+    }
+};
+ui->car->setStyle(new ProxyStyle);
+*/

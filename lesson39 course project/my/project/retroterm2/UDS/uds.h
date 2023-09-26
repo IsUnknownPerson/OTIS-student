@@ -4,8 +4,12 @@
 #include "decoding.h"
 #include <QObject>
 #include <QMap>
+#include <QVector>
+#include <QPair>
+
 
 #define DELAY 10
+#define AskRemaining "300000AAAAAAAAAA"
 
 //enum class Quere_type : int { Permanent, One_time, Car_Emulate };
 
@@ -26,14 +30,20 @@ signals:
 private:
     void choose_next();
     void form_and_send_command_to_tcu();
+    bool frame_assembled();
 
     decoding pdecode;
 
     QByteArray RXbuf = "";
 
-    QMap<uds_task, size_t> permanent_quere; //task, timeout
-    QMap<uds_task, size_t> one_time_quere;
-    QMap<uds_task, size_t> car_Emulate_quere;
+//    QMap<uds_task, size_t> permanent_quere; //task, timeout
+//    QMap<uds_task, size_t> one_time_quere;
+//    QMap<uds_task, size_t> car_Emulate_quere;
+
+    QVector<QPair<uds_task, size_t>> permanent_quere; //task, timeout
+    QVector<QPair<uds_task, size_t>> one_time_quere;
+    QVector<QPair<uds_task, size_t>> car_Emulate_quere;
+
     car_struct car;
 
     struct quere_maintance
@@ -41,8 +51,9 @@ private:
         bool one_time_quere_pending;
         bool car_Emulate_quere_pending;
         bool waiting_answer = false;
+        uint16_t operationNumber = 0;
         Quere_type current_quere;
-        uds_task current_task;
+        QPair<size_t, uds_task> current_task;
         Quere_type prev_quere;
         uds_task prev_perm_task;
         uds_task prev_oneTime_task;
