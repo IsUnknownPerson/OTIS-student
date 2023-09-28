@@ -16,11 +16,9 @@ jobs:
         with:
           submodules: true
       - run: sudo apt-get update && sudo apt-get install cmake libboost-test-dev -y
-      #- run: cmake ./professional/lesson1/teacher_project -DPATCH_VERSION=${{ github.run_number }}
       - run: cmake ./professional/lesson1/homework/homework -DPATCH_VERSION=${{ github.run_number }}
       - run: cmake --build .
       - run: cmake --build . --target homework
-      #- run: cmake --build . --target package
       - name: Create Release
         id: create_release
         uses: actions/create-release@v1
