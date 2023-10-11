@@ -1,0 +1,34 @@
+Checks: >
+  -*,
+  bugprone-*,
+  -bugprone-easily-swappable-parameters,
+  -bugprone-exception-escape,
+  -bugprone-narrowing-conversions,
+  clang-analyzer-*,
+  -clang-analyzer-deadcode.*,
+  concurrency-*,
+  cppcoreguidelines-*,
+  -cppcoreguidelines-avoid-magic-numbers,
+  -cppcoreguidelines-avoid-non-const-global-variables,
+  -cppcoreguidelines-pro-bounds-pointer-arithmetic,
+  -cppcoreguidelines-owning-memory,
+  -cppcoreguidelines-avoid-c-arrays,
+  -cppcoreguidelines-macro-usage,
+  -cppcoreguidelines-pro-bounds-array-to-pointer-decay,
+  -cppcoreguidelines-narrowing-conversions,
+  -cppcoreguidelines-init-variables,
+  misc-*,
+  -misc-non-private-member-variables-in-classes,
+  -modernize-*,  # as webinar is about C++ 14
+  -modernize-use-trailing-return-type,
+  -modernize-avoid-c-arrays,
+  -misc-const-correctness,
+  performance-*,
+  portability-*,
+  -readability-*  # not too useful for examples
+
+# WarningsAsErrors: "*"
+
+FormatStyle: file
+
+HeaderFilterRegex: "."

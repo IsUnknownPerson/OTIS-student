@@ -1,0 +1,10 @@
+cat ip_filter.tsv | ip_filter | md5sum
+
+
+в cmd:
+вместо cat надо type и вместо md5sum надо найти аналог
+
+в power shel вроде бы есть cat
+
+На Windows можно поставить https://git-scm.com/downloads,
+будет вариант командной строки с *nix утилитами (cat ls ps tail ....)
