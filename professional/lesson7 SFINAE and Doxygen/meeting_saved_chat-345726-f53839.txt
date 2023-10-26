@@ -1,0 +1,275 @@
+19:56:58 From okkamov To Everyone:
+	Вижу но пока не слышу
+19:57:05 From KB To Everyone:
+	-
+19:57:17 From Артём To Everyone:
+	добрый вечер
+19:57:26 From okkamov To Everyone:
+	Доброй ночи!
+19:57:45 From KB To Everyone:
+	добрый вечер. Звук уже должен быть?
+19:58:37 From Андрей Рыжиков To Everyone:
+	Replying to "добрый вечер. Звук у..."
+	
+	Пока нет
+19:58:39 From Артём To Everyone:
+	Можно микрофон чуть погромче?
+19:59:19 From Артём To Everyone:
+	вроде немного получше
+19:59:30 From Артём To Everyone:
+	да, уже)
+20:00:22 From Igor Serdtsev To Everyone:
+	+
+20:00:25 From okkamov To Everyone:
+	+
+20:00:25 From denis To Everyone:
+	+
+20:00:26 From Artyom To Everyone:
+	+
+20:00:28 From KB To Everyone:
+	+
+20:03:36 From marat To Everyone:
+	Вечер добрый. А где были вопросы по аллокаторам, есть какой то иной чат, помимо телеги?
+20:03:53 From Артём To Everyone:
+	чат в лк для домашки
+20:04:20 From marat To Everyone:
+	Replying to "чат в лк для домашки"
+	
+	Личные значит, спасибо.
+20:05:46 From Артём To Everyone:
+	8
+20:05:46 From Дмитрий To Everyone:
+	8
+20:05:48 From Artyom To Everyone:
+	3
+20:05:49 From denis To Everyone:
+	3
+20:06:18 From marat To Everyone:
+	3, но можно и в 8 - большой кусок, а в 3 - маленькие из резерва сделанного в 8
+20:09:26 From Артём To Everyone:
+	можно еще раз, что значит "ломаем кэш"?
+20:10:03 From mikhail To Everyone:
+	заставляем процессор инвалидировать свой кэш и обратиться к новой области памяти для выгрузки в кэш
+20:10:04 From marat To Everyone:
+	можно указатели хранить последовательно, а указанные им объекты в разнобой.
+20:12:37 From okkamov To Everyone:
+	boost::small_vector аллоцирует всё в стеке
+20:13:07 From okkamov To Everyone:
+	маленькими кусочками выделяя
+20:14:48 From Андрей Рыжиков To Everyone:
+	https://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines
+20:15:32 From okkamov To Everyone:
+	+
+20:15:33 From marat To Everyone:
+	+
+20:15:39 From denis To Everyone:
+	Don't repeat yourself
+20:15:40 From mikhail To Everyone:
+	dont repeat yourself
+20:15:45 From KB To Everyone:
+	+
+20:16:15 From Дмитрий To Everyone:
+	шаблоны
+20:21:15 From Artur To Everyone:
+	разные
+20:21:20 From okkamov To Everyone:
+	разные
+20:21:23 From Igor Serdtsev To Everyone:
+	разные
+20:21:23 From Artyom To Everyone:
+	false
+20:21:25 From KB To Everyone:
+	разн
+20:21:31 From marat To Everyone:
+	да
+20:21:31 From nmikhailovskiy To Everyone:
+	v не используется, ub??
+20:21:31 From Дмитрий To Everyone:
+	разные
+20:22:38 From Artyom To Everyone:
+	скажите пожалуйста про boolapha
+20:23:05 From Артём To Everyone:
+	потому что адреса шаблонных функций не определены на момент компиляции?
+20:23:29 From Artyom To Everyone:
+	понял, спасибо
+20:24:58 From Artyom To Everyone:
+	а что деалет foo(5)?
+20:25:06 From marat To Everyone:
+	подставится 25
+20:27:54 From Artur To Everyone:
+	value будет считаться в compile time?
+20:28:18 From marat To Everyone:
+	у констэкспр могут быть template<   > ?
+20:29:48 From Dmitriy Rybalkin To Everyone:
+	if constexpr (  в c++17 ?
+20:31:59 From Artyom To Everyone:
+	не совсем понятно зачем ()в конце
+20:32:40 From Артём To Everyone:
+	это вызов
+20:35:27 From Андрей Рыжиков To Everyone:
+	https://godbolt.org/z/cYK1so9jb
+20:35:28 From marat To Everyone:
+	переполнение ?
+20:38:49 From nmikhailovskiy To Everyone:
+	рефлексию вроде хотят и без шаблонов в ++ добавлять, вроде
+20:40:38 From Artyom To Everyone:
+	-
+20:40:40 From Дмитрий To Everyone:
+	-
+20:40:44 From KB To Everyone:
+	+
+20:42:03 From Дмитрий To Everyone:
+	в строчке 6 U это const int например а ниже значение U меняется получается?
+20:42:08 From Dmitriy Rybalkin To Everyone:
+	+
+20:43:16 From Дмитрий To Everyone:
+	имею ввиду u на 6 строчке не равен U на 7ой
+20:43:18 From Артём To Everyone:
+	а можете 11 и 12 строчки пояснить?
+20:43:23 From Артём To Everyone:
+	не очень пончтно, что они делают
+20:44:48 From Андрей Рыжиков To Everyone:
+	https://en.cppreference.com/w/cpp/header/type_traits
+20:46:02 From KB To Everyone:
+	ссылку прям на эту страницу можно в материалы кинуть
+20:47:09 From Artyom To Everyone:
+	не совсем понятно как убирается констанстность
+20:47:10 From Артём To Everyone:
+	а можно специализировать функцию только для неконстантных объектов?
+20:47:20 From marat To Everyone:
+	typename можно попросить принять константный указатель на U ?
+20:47:34 From Артём To Everyone:
+	Replying to "не совсем понятно ка..."
+	
+	функция получает константный тип, но использует тип как обычный, неконстантный
+20:47:57 From KB To Everyone:
+	надо отметить что частичная специализация вызовется всегда наиболее специализированная
+20:47:58 From Артём To Everyone:
+	Replying to "не совсем понятно ка..."
+	
+	получает const U, а использует U (using U)
+20:47:59 From nmikhailovskiy To Everyone:
+	т.е. в U для а2 не будет const const int
+20:48:53 From Artur To Everyone:
+	нам U нужен для того, чтобы не писать вот так:	remove_const<const int>	remove_const<const double>	remove_const<const string>	...
+20:49:23 From nmikhailovskiy To Everyone:
+	+
+20:54:37 From Maxim K To Everyone:
+	приведите, пожалуйста, пример вызова condititonal
+20:55:21 From KB To Everyone:
+	крупнее бы
+20:56:49 From mikhail To Everyone:
+	а как мы тип принимаем как значение?
+20:57:51 From mikhail To Everyone:
+	понято
+	вопрос снят
+20:58:10 From marat To Everyone:
+	Replying to "а как мы тип принима..."
+	
+	на этапе компиляции тип это и есть значение?
+20:58:34 From Artyom To Everyone:
+	не совсем понятно что делает conditional
+20:59:15 From nmikhailovskiy To Everyone:
+	похоже на optional чем-то
+20:59:36 From Artyom To Everyone:
+	да, спасибо
+21:03:28 From KB To Everyone:
+	это было в ДЗ в allocator_traits
+21:10:36 From Artyom To Everyone:
+	is_list можно было бы использовать ?
+21:11:08 From Артём To Everyone:
+	как то костыльно выглядит
+21:11:27 From denis To Everyone:
+	что обозначает int{} ?
+21:12:01 From Артём To Everyone:
+	можно наверное попробовать с помощью enum передавать значение, какой контейнер нужно использовать?
+21:13:10 From mikhail To Everyone:
+	Replying to "можно наве..."
+	
+	это же будет частичная специализация, разве нет?
+21:13:54 From Андрей To Everyone:
+	почему у вектора остается только 1 перегрузка?
+21:14:39 From Артём To Everyone:
+	типа template<bool condition == enum::num, type T>
+21:15:17 From Андрей To Everyone:
+	Спасибо
+21:15:20 From Artyom To Everyone:
+	не совсем понятно как int и long  работает
+21:15:54 From Артём To Everyone:
+	ну это псевдокод)
+21:17:11 From denis To Everyone:
+	foo(10L);
+21:18:10 From Artyom To Everyone:
+	+, спасибо
+21:18:32 From marat To Everyone:
+	если была бы long long перегрузка то она рассматривалась третьей?
+21:20:20 From Дмитрий To Everyone:
+	можно убрать build
+21:20:33 From Дмитрий To Everyone:
+	спасибо)
+21:22:28 From Андрей To Everyone:
+	подскажите, пожалуйста, а конструктор перемещения как вызывается с &&?
+21:24:20 From Artyom To Everyone:
+	подскажите пожалуйста что вообще делает std::forward
+21:24:58 From Артём To Everyone:
+	передает объект как есть -  если ссылка - то ссылку, если временный объект - то его
+21:26:59 From marat To Everyone:
+	Три конструктора с разной сигнатурой выглядят гораздо понятнее =)
+21:29:17 From Андрей To Everyone:
+	зачем void?
+21:29:20 From Artur To Everyone:
+	почему enable_if_t не проходит компиляцию?	Только из-за false в первом параметре?
+21:30:31 From Artur To Everyone:
+	понял, у нас был такой пример
+21:30:35 From Андрей To Everyone:
+	void у конструктора?
+21:31:52 From Артём To Everyone:
+	а можно пример концепта?
+21:31:55 From Артём To Everyone:
+	простенькийц?
+21:32:09 From Артём To Everyone:
+	я имею в виду разобрать, как работает
+21:32:15 From Артём To Everyone:
+	хотя бы в общих чертах
+21:32:28 From Artyom To Everyone:
+	еще раз пожалуйста скажите что делает enable_If
+21:33:39 From Артём To Everyone:
+	а когда подается эта строка?
+21:33:46 From Артём To Everyone:
+	в какой момент?
+21:34:08 From Артём To Everyone:
+	и это не рушится, если в стринг пытаются подать инт?
+21:34:22 From Артём To Everyone:
+	не, я имею в виду программист когда пишет это
+21:34:29 From Артём To Everyone:
+	куда писать стриншг
+21:35:02 From Артём To Everyone:
+	ну откуда берется вот это std::string b
+21:35:33 From Артём To Everyone:
+	то есть это абстрактная вещь, которая в коде больше нигде не подается? только в концепте?
+21:35:49 From Артём To Everyone:
+	+
+21:35:57 From marat To Everyone:
+	+
+21:35:59 From Artyom To Everyone:
+	тогда наврно понятнее было бы назвать same?
+21:36:09 From Андрей Рыжиков To Everyone:
+	https://otus.ru/polls/71314/
+21:36:34 From nmikhailovskiy To Everyone:
+	спасибо, было понятно, но тут надо прям поиграться с этим в коде
+21:38:41 From KB To Everyone:
+	можно было в примере с контейнерами использовать вместо трюка с перегрузками int long  использовать enable_if? что-то типа такого decltype(enable_if(not is_thesame<decltype(T.sort()),void>))
+21:38:45 From Artyom To Everyone:
+	forward
+21:40:20 From KB To Everyone:
+	в decltype можно вкладывть ддругую decltype?
+21:41:19 From Артём To Everyone:
+	спасибо, очень интересно!
+21:41:21 From Андрей To Everyone:
+	что нужно чтобы запустить концепты на gcc?
+21:42:02 From Андрей Рыжиков To Everyone:
+	https://godbolt.org/z/7oG946Mj5
+21:42:21 From Artur To Everyone:
+	Спасибо за лекцию!
+21:42:28 From marat To Everyone:
+	Спасибо, хороших выходных!
